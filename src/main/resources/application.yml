@@ -3,6 +3,10 @@ server:
 
 # druid 数据库连接池
 spring:
+#  解决高版本springboot使用swagger启动报Failed to start bean 'documentationPluginsBootstrapper';
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -32,3 +36,6 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
