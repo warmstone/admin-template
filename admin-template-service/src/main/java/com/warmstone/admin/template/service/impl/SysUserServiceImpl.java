@@ -18,6 +18,16 @@ import javax.annotation.Resource;
 public class SysUserServiceImpl extends AbstractBaseService<SysUserMapper, SysUser> implements SysUserService {
 
     @Resource
-    private SysUserMapper sysUserMapper;
+    private SysUserMapper mapper;
+
+    @Override
+    public void setMapper(SysUserMapper mapper) {
+        this.mapper = mapper;
+    }
+
+    @Override
+    public SysUserMapper getMapper() {
+        return this.mapper;
+    }
 
 }

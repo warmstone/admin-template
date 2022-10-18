@@ -14,9 +14,11 @@ import java.util.function.Supplier;
  */
 public abstract class AbstractBaseService <E extends BaseMapper<T>, T> implements BaseService <E, T> {
 
-    protected BaseMapper<T> mapper;
+    public abstract void setMapper(E mapper);
 
-    public T getById(Long id) {
-        return mapper.selectById(id);
+    public abstract E getMapper();
+
+    public T selectById(Long id) {
+        return this.getMapper().selectById(id);
     }
 }

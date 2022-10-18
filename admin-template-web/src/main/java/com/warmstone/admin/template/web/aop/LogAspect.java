@@ -1,5 +1,6 @@
 package com.warmstone.admin.template.web.aop;
 
+import cn.hutool.json.JSONUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -36,6 +37,7 @@ public class LogAspect {
         LogEntity logEntity = new LogEntity();
         logEntity.setStartTime(System.currentTimeMillis());
         logEntity.setUrl(request.getRequestURL().toString());
+        logEntity.setIp(request.getRemoteHost());
         logEntity.setHttpMethod(request.getMethod());
         logEntity.setClazzMethod(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         logEntity.setRequestParams(joinPoint.getArgs());
@@ -128,10 +130,10 @@ public class LogAspect {
                     ", httpMethod='" + httpMethod + '\'' +
                     ", clazzMethod='" + clazzMethod + '\'' +
                     ", ip='" + ip + '\'' +
-                    ", requestParams=" + requestParams +
-                    ", responseResult=" + responseResult +
+                    ", requestParams=" + JSONUtil.toJsonStr(requestParams) +
+                    ", responseResult=" + JSONUtil.toJsonStr(responseResult) +
                     ", endTime=" + endTime +
-                    ", time-consuming=" + (startTime - endTime) +
+                    ", time-consuming=" + (endTime - startTime) + "ms" +
                     '}';
         }
     }

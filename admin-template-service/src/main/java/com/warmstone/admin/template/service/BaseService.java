@@ -1,9 +1,5 @@
 package com.warmstone.admin.template.service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.warmstone.admin.template.common.JsonResult;
-import com.warmstone.admin.template.common.PageQuery;
 import com.warmstone.admin.template.mapper.BaseMapper;
 
 import java.util.List;
@@ -15,4 +11,5 @@ import java.util.List;
  */
 public interface BaseService <E extends BaseMapper<T>, T> {
 
+    T selectById(Long id);
 }
